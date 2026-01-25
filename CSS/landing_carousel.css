@@ -1,0 +1,81 @@
+/* 3D Carousel Styles */
+.carousel-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 80px;
+    overflow: visible;
+    /* Allow cards to pop out */
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 450px;
+    /* Adjust based on card height */
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-container .speaker-card {
+    position: absolute;
+    width: 280px;
+    transition: all 0.5s ease-in-out;
+    opacity: 0.5;
+    z-index: 1;
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* Override prev styles if needed */
+    margin: 0;
+}
+
+/* Center Card (Active) */
+.carousel-container .speaker-card.c-active {
+    opacity: 1;
+    z-index: 10;
+    transform: translateX(0) scale(1.1) translateZ(100px);
+    box-shadow: 0 0 30px rgba(180, 76, 255, 0.6);
+    /* Purple glow */
+    filter: brightness(1.1);
+}
+
+/* Left Card (Previous) */
+.carousel-container .speaker-card.c-prev {
+    opacity: 0.7;
+    z-index: 5;
+    transform: translateX(-200%) scale(0.85) translateZ(-50px) rotateY(15deg);
+    filter: blur(1px);
+}
+
+/* Right Card (Next) */
+.carousel-container .speaker-card.c-next {
+    opacity: 0.7;
+    z-index: 5;
+    transform: translateX(200%) scale(0.85) translateZ(-50px) rotateY(-15deg);
+    filter: blur(1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-container {
+        height: 400px;
+    }
+
+    .carousel-container .speaker-card {
+        width: 240px;
+    }
+
+    .carousel-container .speaker-card.c-prev {
+        transform: translateX(-110%) scale(0.8) translateZ(-100px);
+    }
+
+    .carousel-container .speaker-card.c-next {
+        transform: translateX(110%) scale(0.8) translateZ(-100px);
+    }
+}
