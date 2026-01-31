@@ -113,50 +113,85 @@ nav.custom-nav a.active {
   text-shadow: 0 0 12px rgba(249, 200, 2, 0.6), 0 0 24px rgba(249, 200, 2, 0.4);
 }
 
-nav.custom-nav a.nav-passes {
+nav.custom-nav a.pass-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-decoration: none !important;
+  /* display: inline-flex;  Let it flow or inline-block */
+  /* Remove default hover effects from this wrapper */
+}
+
+nav.custom-nav a.pass-wrapper:hover {
+  text-shadow: none !important;
+  background: #000 !important;
+  color: inherit !important;
+}
+
+nav.custom-nav .nav-passes {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  /* For pseudo-element absolute positioning */
 
   height: 80px;
   width: 150px;
 
-  background-image: url("../images/Logo/pass-bg.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
+  /* Remove background from main container */
+  background: transparent !important;
+
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
 
   padding: 0;
   margin-left: 10px;
 
   color: inherit !important;
   font-size: inherit !important;
+  cursor: pointer;
 
   transform: none !important;
-  /* 🚫 image never moves */
   transition: transform 0.2s ease;
+  border-radius: 0 !important;
+  overflow: visible;
+  /* modification here just in case */
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Move image to pseudo-element to use mix-blend-mode if needed */
+nav.custom-nav .nav-passes::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../Images/Logo/pass-bg.png") center/100% 100% no-repeat;
+  /* Use screen blend mode to hide black background of the image itself if present */
+  mix-blend-mode: screen;
+  z-index: 0;
 }
 
 /* Text styling (ONLY text moves) */
-nav.custom-nav a.nav-passes .passes-text {
+/* Text styling (ONLY text moves) */
+nav.custom-nav .nav-passes .passes-text {
+  position: relative;
+  z-index: 1;
+  /* Ensure text is above the image */
   color: #000000 !important;
   /* BLACK */
   font-size: 16px !important;
   /* SMALLER */
   font-weight: 700 !important;
+
   /* BOLD */
-  letter-spacing: 0.6px;
-
-  text-shadow: none !important;
-
-  display: inline-block;
-  transform: translateY(-7px);
-  /* 🔥 move text UP */
 }
 
 /* Hover effect */
-nav.custom-nav a.nav-passes:hover {
-  transform: scale(1.05);
+nav.custom-nav .nav-passes:hover {
+  transform: scale(1.05) !important;
 }
 
 /* Smooth Expansion */
@@ -244,6 +279,7 @@ nav.custom-nav a.active::after {
 body {
   background: #000;
 }
+
 /* HERO SECTION */
 .hero {
   height: 100vh;
@@ -314,10 +350,11 @@ CONTENT .content {
 .year {
   color: #ffd700;
 }
+
 */
 
 /* TAGLINE */
- .tagline {
+.tagline {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -326,6 +363,7 @@ CONTENT .content {
   font-size: 14px;
   letter-spacing: 2px;
 }
+
 .tagline span {
   width: 60px;
   height: 2px;
@@ -359,7 +397,7 @@ CONTENT .content {
 /* ABOUT */
 .about {
   min-height: 100vh;
-  background: #000;
+  background: transparent;
   color: #fff;
   padding: 6rem 2rem;
   display: flex;
@@ -381,7 +419,7 @@ CONTENT .content {
 /* Paragraphs */
 .about-text {
   max-width: 900px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 1.8;
   /* margin-bottom: 1.5rem; */
   color: #e0e0e0;
@@ -416,7 +454,7 @@ CONTENT .content {
 .title {
   text-align: center;
   margin: 40px 0;
-  font-size: 36px;
+  font-size: 4rem;
   color: white;
   text-shadow: 0 0 10px red;
 }
@@ -426,15 +464,17 @@ CONTENT .content {
 =========================== */
 
 .events-section {
-  padding: 80px 40px;
-  background: radial-gradient(circle at top, #0b0f1a, #000);
+  padding: 80px 40px 150px 40px;
+  /* Increased bottom padding */
+  background: transparent;
+  /* Changed from gradient to transparent */
   min-height: 100vh;
 }
 
 /* Title */
 .events-title {
   text-align: center;
-  font-size: 40px;
+  font-size: 4rem;
   font-weight: 900;
   color: white;
   text-shadow: 0 0 10px red;
@@ -513,7 +553,7 @@ CONTENT .content {
   z-index: 3;
   text-align: center;
   padding: 20px;
-  
+
 }
 
 .card-hover h2,
@@ -1004,11 +1044,12 @@ body {
 /* Title */
 .title {
   text-align: center;
-  font-size: 36px;
+  font-size: 4rem;
   font-weight: 900;
   color: white;
   text-shadow: 0 0 10px red;
-  margin-bottom: 40px;
+  margin-bottom: 100px;
+  /* Increased margin bottom */
 }
 
 /* Grid */
@@ -1073,7 +1114,8 @@ body {
 .marquee-container-sponsors {
   width: 100%;
   overflow: hidden;
-  background: #0b0b0f;
+  background: transparent;
+  /* Changed from #0b0b0f to transparent */
   padding: 40px 0;
   position: relative;
 }
@@ -1114,9 +1156,10 @@ body {
 .marquee-track-sponsors {
   transition: animation-play-state 0.3s ease;
 }
+
 /* SPACE BACKGROUND UTILITY */
 .space-bg {
-  background-image: url("../Images/Bg-img/space-bg.png");
+  background-image: url("../Images/Bg-img/Enspire-Bg-2.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1134,7 +1177,158 @@ body {
 }/*
 
 /* Ensure content stays above overlay */
-.space-bg > * {
+.space-bg>* {
   position: relative;
   z-index: 1;
+}
+
+/* ===========================
+   ADDED RESPONSIVE STYLES
+   =========================== */
+
+@media (max-width: 600px) {
+
+  /* Hero Section */
+  .hero .content {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .btn {
+    margin-top: 20rem;
+    /* Reduced from 40rem for better mobile fit */
+    font-size: 14px;
+    padding: 12px 30px;
+  }
+
+  /* About Section */
+  .about-title {
+    font-size: 1.8rem;
+    letter-spacing: normal;
+  }
+
+  .about-text {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  /* Events Section */
+  .events-grid {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+    gap: 30px;
+  }
+
+  .event-card {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/4;
+    margin: 0 auto;
+  }
+
+  .card-front {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-front img {
+    /* Make images responsive within the card */
+    max-width: 80%;
+    height: auto;
+  }
+
+  /* Speakers Section */
+  .title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  /* Carousel adjustments handled in carousel CSS effectively, 
+     but adding extra safety here if needed */
+  .carousel-container {
+    height: 350px;
+  }
+
+  /* Sponsors Section */
+  .sponsor-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sponsor-card {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo-section img {
+    height: 40px;
+  }
+
+  .hamburger {
+    font-size: 24px;
+  }
+
+  .btn {
+    margin-top: 10rem;
+  }
+}
+
+/* Additional button styling */
+.nav-passes {
+  background: linear-gradient(135deg, #f4d03f 0%, #f9e79f 50%, #f4d03f 100%);
+  border: 3px solid #d4af37;
+  color: #8b6914;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.2),
+    0 8px 16px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-passes::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+.nav-passes:hover {
+  background: linear-gradient(135deg, #fde74c 0%, #ffe066 50%, #fde74c 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.25),
+    0 12px 24px rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
+}
+
+.nav-passes:active {
+  transform: translateY(0);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.passes-text {
+  position: relative;
+  z-index: 1;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
 }

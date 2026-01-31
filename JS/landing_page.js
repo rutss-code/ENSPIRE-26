@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3D Carousel Logic
     const carouselContainer = document.querySelector('.carousel-container');
-    
+
     // Only proceed if carousel exists
     if (carouselContainer) {
         const cards = Array.from(carouselContainer.querySelectorAll('.speaker-card'));
         const totalCards = cards.length;
-        
+
         // We need at least 3 cards for this specific animation logic
         if (totalCards >= 3) {
             let currentIndex = 1; // Start with the middle card (index 1 for 3 cards)
