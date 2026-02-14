@@ -1,10 +1,20 @@
-/* Styling for the webpage */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: black;
   color: white;
   font-family: "Open Sans", sans-serif;
   box-sizing: border-box;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body.intro-active {
+  overflow: hidden;
 }
 
 *,
@@ -18,160 +28,290 @@ a {
   text-decoration: none;
 }
 
+/* ==============================
+    HEADER / NAVBAR STYLING (BOOTSTRAP OVERRIDE VERSION)
+   ============================== */
+
+/* 1. Header Container */
+.header-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  /* Semi-transparent black */
+  backdrop-filter: blur(10px);
+  /* Glassmorphism effect */
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.75rem 4.375rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  height: auto;
+  min-height: 4.6875rem;
+  position: fixed;
+  /* Always on top */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 30px;
-    position: fixed;
-    top: 15px; 
+  height: 4.6875rem;
+  /* Spacer to prevent content jump */
+}
+
+/* 2. Logo Consistency */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-section img {
+  height: 2.375rem;
+  width: auto;
+  transform: scale(1.3);
+  transform-origin: left center;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo-section img:hover {
+  transform: scale(1.4);
+}
+
+.logo-text {
+  font-size: 10px;
+  font-weight: 600;
+  color: #f9c802;
+}
+
+/* 3. Navigation Links (BOOTSTRAP OVERRIDES) */
+nav.custom-nav {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* We use !important here to defeat Bootstrap's 'a' tag styling (usually blue/underlined) */
+nav.custom-nav a {
+  text-decoration: none !important;
+  color: #fff !important;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.4375rem;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 0.375rem;
+  transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+
+/* The Golden Line */
+/* nav.custom-nav a::after {
+    content: '';
+    position: absolute;
     left: 50%;
+    bottom: 0;
     transform: translateX(-50%);
-    width: 95%; 
-    max-width: 1200px;
-    height: 70px; /* Slightly taller for the big buttons */
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.05); 
-    backdrop-filter: blur(15px); 
-    -webkit-backdrop-filter: blur(15px);
-    border-radius: 100px; /* Full Pill Shape */
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
-    opacity: 1;
+    width: 0%;
+    height: 2px;
+    background-color: #f9c802;
+    box-shadow: 
+        0 0 8px rgba(249, 200, 2, 0.8), 
+        0 0 16px rgba(249, 200, 2, 0.6);
+    transition: width 0.4s ease-in-out; 
+} */
+
+/* Hover & Active State */
+nav.custom-nav a:hover,
+nav.custom-nav a.active {
+  color: #f9c802 !important;
+  text-shadow: 0 0 12px rgba(249, 200, 2, 0.6), 0 0 24px rgba(249, 200, 2, 0.4);
 }
 
-header.nav-hidden {
-   transform: translate(-50%, -150%);
-    opacity: 0;
-    pointer-events: none; /* Moves it up out of view */
+nav.custom-nav a.pass-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-decoration: none !important;
+  /* display: inline-flex;  Let it flow or inline-block */
+  /* Remove default hover effects from this wrapper */
 }
 
-/* 1. Base Link Style */
-li a {
-    text-decoration: none !important; /* Removes default underline */
-    color: white;
-    padding: 10px 15px;
-    transition: all 0.3s ease;
-    display: inline-block;
+nav.custom-nav a.pass-wrapper:hover {
+  text-shadow: none !important;
+  background: #000 !important;
+  color: inherit !important;
 }
 
-/* 2. HOVER: White Glow (No underline) */
-li a:hover {
-    text-decoration: none; /* Double check to prevent hover underlines */
-    color: #ffffff;
-    /* Layered shadows create a neon 'glow' effect */
-    text-shadow: 0 0 8px #ffffff, 0 0 15px #ffffff; 
+nav.custom-nav .nav-passes {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* For pseudo-element absolute positioning */
+
+  height: 5rem;
+  width: 9.375rem;
+
+  /* Remove background from main container */
+  background: transparent !important;
+
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+
+  padding: 0;
+  margin-left: 10px;
+
+  color: inherit !important;
+  font-size: inherit !important;
+  cursor: pointer;
+
+  transform: none !important;
+  transition: transform 0.2s ease;
+  border-radius: 0 !important;
+  overflow: visible;
+  /* modification here just in case */
+  appearance: none;
+  -webkit-appearance: none;
 }
 
-/* 3. ACTIVE: Yellow State (No underline) */
-li a.active {
-    text-decoration: none;
-    color: #f9c802 !important; /* Your Enspire Yellow */
-    text-shadow: 0 0 12px rgba(249, 200, 2, 0.5);
-    font-weight: 700;
-}
-nav {
-    width: 100%;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly; /* Keeps large buttons equally spaced */
-    width: 100%;
-    margin: 0;
-    padding: 0;
+/* Move image to pseudo-element to use mix-blend-mode if needed */
+nav.custom-nav .nav-passes::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../Images/Logo/pass-bg.png") center/100% 100% no-repeat;
+  /* Use screen blend mode to hide black background of the image itself if present */
+  mix-blend-mode: screen;
+  z-index: 0;
 }
 
-nav ul li {
-    /* 1. Increase text size and weight */
-    font-size: 18px; /* Standard links are usually 12-14px; 18px feels much bigger */
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px; /* Spreads letters for a "wide" premium look */
-    
-    /* 2. Coloring and Transition */
-    color: rgba(255, 255, 255, 0.85);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    white-space: nowrap; /* Keeps items on one line */
-    
-    /* 3. Padding for larger clickable area */
-    padding: 5px 10px;
+/* Text styling (ONLY text moves) */
+/* Text styling (ONLY text moves) */
+nav.custom-nav .nav-passes .passes-text {
+  position: relative;
+  z-index: 1;
+  /* Ensure text is above the image */
+  color: #000000 !important;
+  /* BLACK */
+  font-size: 16px !important;
+  /* SMALLER */
+  font-weight: 700 !important;
+
+  /* BOLD */
 }
 
-/* 4. Hover effect to make them pop even more */
-nav ul li:hover {
-    color: #fff;
-    transform: scale(1.15); /* Makes the link grow 15% bigger on hover */
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+/* Hover effect */
+nav.custom-nav .nav-passes:hover {
+  transform: scale(1.05) !important;
 }
 
-/* Slim logo for the slim bar */
-.logo img {
-    height: 30px; 
-    width: auto;
+/* Smooth Expansion */
+nav.custom-nav a:hover::after,
+nav.custom-nav a.active::after {
+  width: 100%;
 }
 
-/* Ensure the Pass icon is tiny and balanced */
-.pass-btn img {
-    height: 60px !important; 
-    width: auto;
-    cursor: pointer;
-    
-    /* THE FIX: Moves the icon down by 5 pixels */
-    transform: translateY(5px); 
-    
-    /* Keep your existing transition and filter */
-    transition: transform 0.3s ease, filter 0.3s ease;
-    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.7));
-}
-
-/* Update hover to keep the downward position while scaling */
-.pass-btn img:hover {
-    transform: translateY(5px) scale(1.1); 
-    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1));
-}
-
-/* Mobile Hamburger */
+/* HAMBURGER BUTTON (MOBILE) */
 .hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+/* MOBILE NAV MENU */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  text-align: center;
+  padding: 2rem 1.25rem;
+  gap: 1.5rem;
+  position: fixed;
+  top: 4.6875rem;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  border-bottom: 2px solid #f9c802;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-nav a {
+  text-decoration: none !important;
+  color: #fff !important;
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-family: "Open Sans", sans-serif;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mobile-nav a:hover {
+  color: #f9c802 !important;
+  text-shadow: 0 0 10px rgba(249, 200, 2, 0.5);
+}
+
+.mobile-nav.active {
+  display: flex;
+  animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* RESPONSIVE HEADER */
+@media (max-width: 1024px) {
+  nav.custom-nav {
     display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .logo-section img {
+    height: 55px;
+    transform: scale(1.2);
+  }
+
+  .header-content {
+    padding: 10px 25px;
+    height: 70px;
+  }
 }
 
-.bar {
-    width: 25px;
-    height: 3px;
-    background: #fff;
-    border-radius: 2px;
+@media (max-width: 600px) {
+  .logo-section img {
+    height: 50px;
+    transform: scale(1.1);
+  }
+
+  .header-content {
+    padding: 10px 20px;
+    height: 65px;
+  }
 }
 
-/* Responsive Mobile Menu */
-@media (max-width: 768px) {
-    .hamburger { display: flex; }
-    
-    nav#nav-menu {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        justify-content: center;
-        transition: 0.5s ease;
-    }
-
-    nav#nav-menu.active { left: 0; }
-
-    nav ul { flex-direction: column; gap: 30px; }
-}
 * {
   margin: 0;
   padding: 0;
@@ -179,49 +319,55 @@ nav ul li:hover {
   font-family: "Poppins", sans-serif;
 }
 
-/* FORCE THE PAGE TO STAY INSIDE THE PHONE */
-/* 1. Reset Global width to prevent horizontal overflow */
-html, body {
-    width: 100% !important;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden !important; /* Forces the black side-gap to disappear */
+body {
+  background: #000;
 }
 
 /* HERO SECTION */
 .hero {
+  height: 100vh;
   position: relative;
-  width: 100%;
-  min-height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #fff;
+}
+
+/* VIDEO BACKGROUND */
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+}
+
+.mobile-video {
+  display: none;
+}
+
+
+
+/* HERO CONTENT */
+.hero .content {
+  position: relative;
+  z-index: 2;
   text-align: center;
 }
 
-.hero-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
-.hero .content img {
-    width: 85% !important; /* Forces the name to fit inside the phone screen */
-    max-width: 500px;
-    height: auto;
-    margin: 0 auto;
-    display: block;
-}
 /* DARK OVERLAY */
-.overlay {
+/* .overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.55);
-} 
+} */
 
 CONTENT .content {
   position: relative;
@@ -231,9 +377,9 @@ CONTENT .content {
 
 /* TOP TEXT */
 .top-text {
-  font-size: 14px;
-  letter-spacing: 2px;
-  margin-bottom: 15px;
+  font-size: 0.875rem;
+  letter-spacing: 0.125rem;
+  margin-bottom: 0.9375rem;
   opacity: 0.9;
 }
 
@@ -266,29 +412,28 @@ CONTENT .content {
 }
 
 .tagline span {
-  width: 60px;
-  height: 2px;
+  width: 3.75rem;
+  height: 0.125rem;
   background: #ffd700;
 }
 
 /* DATE */
 .date {
-  font-size: 16px;
-  margin-bottom: 30px;
+  font-size: 1rem;
+  margin-bottom: 1.875rem;
 }
 
 /* BUTTON */
 .btn {
-    padding: 14px 35px;
-    border-radius: 30px;
-    background: transparent;
-    border: 2px solid #b44cff;
-    color: #fff;
-    cursor: pointer;
-    margin-top: 25rem; 
-    display: inline-block;
-    position: relative;
-    z-index: 5;
+  padding: 0.875rem 2.1875rem;
+  border-radius: 1.875rem;
+  background: transparent;
+  border: 0.125rem solid #b44cff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-top: 25rem;
 }
 
 .btn:hover {
@@ -298,10 +443,10 @@ CONTENT .content {
 
 /* ABOUT */
 .about {
-  min-height: 100vh;
+  min-height: auto;
   background: transparent;
   color: #fff;
-  padding: 6rem 2rem;
+  padding: 4rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -320,16 +465,16 @@ CONTENT .content {
 
 /* Paragraphs */
 .about-text {
-  max-width: 900px;
-  font-size: 2rem;
+  max-width: 56.25rem;
+  font-size: 1.25rem;
   line-height: 1.8;
-  /* margin-bottom: 1.5rem; */
   color: #e0e0e0;
+  margin-bottom: 1rem;
 }
 
 /* Final highlighted line */
 .about-text.highlight {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   font-weight: 500;
   color: #ffffff;
 }
@@ -347,9 +492,6 @@ CONTENT .content {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .hero {
-    height: 70vh;
-  }
   .title {
     font-size: 3rem;
   }
@@ -358,7 +500,7 @@ CONTENT .content {
 /* TITLE */
 .title {
   text-align: center;
-  margin: 40px 0;
+  margin: 2.5rem 0;
   font-size: 4rem;
   color: white;
   text-shadow: 0 0 10px red;
@@ -369,11 +511,9 @@ CONTENT .content {
 =========================== */
 
 .events-section {
-  padding: 80px 40px 150px 40px;
-  /* Increased bottom padding */
+  padding: 4rem 2rem 6rem 2rem;
   background: transparent;
-  /* Changed from gradient to transparent */
-  min-height: 100vh;
+  min-height: auto;
 }
 
 /* Title */
@@ -383,28 +523,21 @@ CONTENT .content {
   font-weight: 900;
   color: white;
   text-shadow: 0 0 10px red;
-  margin-bottom: 40px;
+  margin-bottom: 2rem;
 }
 
 /* Grid */
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 40px;
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(16.25rem, 1fr));
+  gap: 2.5rem;
+  max-width: 75rem;
   margin: auto;
 }
 
 /* ===========================
    EVENT CARD BASE
 =========================== */
-
-.events-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
 
 .event-card {
   position: relative;
@@ -443,9 +576,10 @@ CONTENT .content {
 }
 
 .card-front img {
-  height: 13rem;
-  width: 15rem;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 /* ===========================
@@ -589,12 +723,30 @@ CONTENT .content {
   }
 
   .event-card {
-    height: 320px;
+    height: 300px !important;
+    width: 280px !important;
+    margin: 0 auto;
   }
 
   .card-front img {
-    width: 100%;
-    height: auto;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .card-hover h2,
+  .card-hover h3 {
+    font-size: 1.4rem !important;
+  }
+
+  .card-hover h4 {
+    font-size: 0.9rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .card-hover button {
+    padding: 6px 14px !important;
+    font-size: 12px !important;
   }
 }
 
@@ -671,6 +823,7 @@ CONTENT .content {
   min-height: 44px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -740,8 +893,8 @@ CONTENT .content {
 .footer-content {
   background-color: #000;
   color: #fff;
-  padding: 60px 50px;
-  border-radius: 16px 16px 0 0;
+  padding: 3.75rem 3.125rem;
+  border-radius: 1rem 1rem 0 0;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -900,19 +1053,58 @@ CONTENT .content {
     padding: 40px 20px;
   }
 
+  .footer-grid {
+    align-items: stretch;
+    /* Allow full width for children */
+  }
+
   .footer-links-section {
-    flex-direction: column;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 20px;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .footer-column {
+    align-items: flex-start;
+    /* Left align flex items (links) */
+    text-align: left;
+    min-width: 0;
+    /* Prevent overflow */
+  }
+
+  .footer-column h3 {
+    font-size: 18px;
+    border-bottom: 2px solid #f9c802;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    width: 100%;
   }
 
   .footer-column a {
     font-size: 15px;
   }
+
+  /* Social links usually look better if they span or stick to a column. 
+     Left aligning social icons too. */
+  .social-item {
+    justify-content: flex-start;
+  }
+
+  /* Ensure logo section is centered or looks good */
+  .footer-logo-section {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
 }
 
 @media (max-width: 480px) {
   .footer-logo-section img {
-    width: 100px;
+    width: 120px;
   }
 
   .footer-content {
@@ -920,7 +1112,18 @@ CONTENT .content {
   }
 
   .footer-links-section {
-    gap: 25px;
+    gap: 30px;
+    /* On very small screens, maybe stack 'Contact Us' if it's too wide, 
+       but 2 columns usually fit "Home" "About" etc. 
+       Let's keep 2 columns but maybe span the Social/Contact column if needed?
+       Actually, standard 2-col grid is 1fr 1fr. 
+       If content is too wide, it will wrap. */
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Make social links span full width on very small screens to avoid squishing */
+  .social-links {
+    grid-column: 1 / -1;
   }
 
   .footer-column a {
@@ -987,6 +1190,16 @@ body {
   height: 280px;
   background: #e6e6e6;
   border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Bottom name box */
@@ -1027,9 +1240,19 @@ body {
   width: 100%;
   overflow: hidden;
   background: transparent;
-  /* Changed from #0b0b0f to transparent */
-  padding: 40px 0;
+  padding: 2.5rem 0;
   position: relative;
+  margin-bottom: 4rem;
+}
+
+.sponsors-title {
+  padding-top: 4rem !important;
+  padding-bottom: 2rem !important;
+  margin-bottom: 0 !important;
+}
+
+.carousel-container {
+  margin-top: 6rem;
 }
 
 .marquee-track-sponsors {
@@ -1070,48 +1293,25 @@ body {
 }
 
 /* SPACE BACKGROUND UTILITY */
-/* Update these specific blocks in your landing.css */
-
-.unified-bg-wrapper {
-    position: relative !important; 
-    width: 100% !important;
-    display: block !important; /* Ensures it doesn't collapse */
+.space-bg {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent), url("../Images/Bg-img/Enspire-Bg-2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  z-index: 1;
 }
 
-.unified-video-bg {
-    position: absolute !important; 
-    top: 0;
-    left: 0;
-    width: 100% !important;
-    height: 100% !important; 
-    object-fit: cover !important; 
-    z-index: -1 !important; /* Pushes it to the back */
-    pointer-events: none;
-}
-.unified-bg-wrapper::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Tint layer */
-    z-index: -1; /* Above video, below text */
+@media (max-width: 768px) {
+  .space-bg {
+    background-attachment: scroll;
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: repeat;
+  }
 }
 
-/* IMPORTANT: Your sections must be relative to support z-index */
-.about {
-    position: relative !important;
-    z-index: 2 !important; 
-    background: transparent !important; /* Crucial: ensures no black box hides the video */
-    min-height: 100vh;
-}
-.events-section, 
-.current-speakers-section, 
-.marquee-container-sponsors {
-    position: relative;
-    z-index: 10; /* Brings the text/cards to the front */
-}
 /* Dark overlay for readability */
 /*.space-bg::before {
   content: "";
@@ -1131,95 +1331,175 @@ body {
    ADDED RESPONSIVE STYLES
    =========================== */
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+
+  /* Global Adjustments */
+  .title,
+  .about-title,
+  .events-title {
+    font-size: 2.25rem !important;
+    margin-bottom: 1.5rem !important;
+  }
 
   /* Hero Section */
+  .hero {
+    height: auto;
+    min-height: 80vh;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 5rem;
+    /* Space for fixed navbar */
+  }
+
+  .hero-video {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+    object-fit: contain !important;
+  }
+
   .hero .content {
     width: 100%;
-    padding: 0 20px;
+    padding: 1.5rem 1.25rem;
+    margin-top: 1rem;
   }
 
   .btn {
-    margin-top: 20rem;
-    /* Reduced from 40rem for better mobile fit */
-    font-size: 14px;
-    padding: 12px 30px;
+    margin-top: 0;
+    width: 80%;
+    max-width: 300px;
   }
 
   /* About Section */
-  .about-title {
-    font-size: 1.8rem;
-    letter-spacing: normal;
+  .about {
+    padding: 3rem 1.25rem;
   }
 
   .about-text {
-    font-size: 1rem;
-    padding: 0 10px;
+    font-size: 1.125rem;
+    padding: 0 0.625rem;
   }
 
   /* Events Section */
+  .events-section {
+    padding: 3rem 1.25rem;
+  }
+
   .events-grid {
     grid-template-columns: 1fr;
-    padding: 0 20px;
-    gap: 30px;
+    gap: 2rem;
   }
 
   .event-card {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 3/4;
+    height: 300px !important;
+    width: 280px !important;
     margin: 0 auto;
   }
 
-  .card-front {
-    width: 100%;
-    height: 100%;
-  }
-
-  .card-front img {
-    /* Make images responsive within the card */
-    max-width: 80%;
-    height: auto;
-  }
-
   /* Speakers Section */
-  .title {
-    font-size: 2rem;
-    margin-bottom: 30px;
-  }
-
-  /* Carousel adjustments handled in carousel CSS effectively, 
-     but adding extra safety here if needed */
   .carousel-container {
-    height: 350px;
+    margin-top: 2rem;
+    height: 280px !important;
+    /* Reduced height for the section */
   }
 
-  /* Sponsors Section */
-  .sponsor-grid {
+  .speaker-card {
+    height: auto !important;
+    padding: 10px !important;
+    /* Compact padding */
+    width: 160px !important;
+  }
+
+  .photo {
+    height: 160px !important;
+    /* Smaller photo area */
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
 
+  .info {
+    padding: 8px 5px !important;
+    min-height: 50px !important;
+  }
+
+  .name {
+    font-size: 13px !important;
+  }
+
+  .role {
+    font-size: 10px !important;
+  }
+
+  /* Sponsors Section */
+  .sponsors-title {
+    padding-top: 3rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .marquee-container-sponsors {
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+  }
+
   .sponsor-card {
-    width: 100%;
-    max-width: 320px;
-    height: auto;
-    min-height: 250px;
+    width: 140px !important;
+    height: 180px !important;
+    padding: 10px !important;
+  }
+
+  .sponsor-card .logo,
+  .sponsor-card>img {
+    height: 100px !important;
+    flex: 0 0 100px !important;
+  }
+
+  .sponsor-card p {
+    font-size: 12px !important;
+    min-height: 30px !important;
+  }
+
+  /* Intro Video */
+  #intro-video {
+    object-fit: contain !important;
+    /* Ensure entire video is visible */
+    background: black;
   }
 }
 
-@media (max-width: 400px) {
-  .logo-section img {
-    height: 40px;
-  }
+@media (max-width: 480px) {
 
-  .hamburger {
-    font-size: 24px;
+  .title,
+  .about-title,
+  .events-title {
+    font-size: 1.875rem !important;
   }
 
   .btn {
-    margin-top: 10rem;
+    margin-top: 12rem;
+  }
+
+  .logo-section img {
+    height: 1.875rem;
+  }
+
+  .header-content {
+    padding: 1rem;
+    height: auto;
+  }
+
+  .footer-content {
+    padding: 2rem 1rem;
+  }
+
+  .footer-links-section {
+    gap: 1.5rem;
   }
 }
 
@@ -1276,4 +1556,718 @@ body {
   position: relative;
   z-index: 1;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+/* ==============================
+    INTRO OVERLAY & ANIMATIONS
+   ============================== */
+
+#intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: opacity 1s ease;
+}
+
+#intro-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#dust-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10001;
+}
+
+/* Falling Into Galaxy - Stars move INWARD */
+.galaxy-star {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10003;
+  opacity: 0;
+  animation: fallIntoGalaxy cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fallIntoGalaxy {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(1);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--target-x), var(--target-y)) scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* Deep space background */
+#intro-overlay {
+  background: radial-gradient(ellipse at center, #001d3d 0%, #000814 70%, #000000 100%);
+}
+
+/* Gentle galaxy arrival glow */
+#intro-overlay.galaxy-arrival::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center,
+      rgba(100, 150, 255, 0.3) 0%,
+      rgba(50, 100, 200, 0.15) 30%,
+      transparent 60%);
+  z-index: 10010;
+  opacity: 0;
+  animation: galaxyGlow 1.5s ease-out forwards;
+}
+
+@keyframes galaxyGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+#intro-video.dust-effect {
+  filter: blur(10px) contrast(1.5) grayscale(1);
+  animation: dissolve 1.5s forwards;
+}
+
+@keyframes dissolve {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px) grayscale(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+    filter: blur(40px) grayscale(1) brightness(0.5);
+  }
+}
+
+/* Website reveal - Shining materialization */
+.main-content-visible {
+  opacity: 1 !important;
+  pointer-events: all !important;
+  animation: shiningReveal 2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+@keyframes shiningReveal {
+  0% {
+    filter: brightness(5) blur(20px) contrast(2);
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  30% {
+    filter: brightness(3) blur(10px) contrast(1.5);
+    opacity: 0.5;
+  }
+
+  60% {
+    filter: brightness(1.5) blur(3px) contrast(1.2);
+    opacity: 0.8;
+  }
+
+  100% {
+    filter: brightness(1) blur(0) contrast(1);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==============================
+    RESPONSIVE - INTRO ANIMATIONS
+   ============================== */
+
+/* Tablet and smaller devices */
+@media (max-width: 768px) {
+
+  /* Adjust galaxy stars for smaller screens */
+  .galaxy-star {
+    width: 3px !important;
+    height: 3px !important;
+  }
+
+  /* Reduce blur intensity on mobile for better performance */
+  #intro-video.dust-effect {
+    filter: blur(8px) contrast(1.3) grayscale(1);
+  }
+
+  @keyframes dissolve {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0px) grayscale(0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scale(1.1);
+      filter: blur(25px) grayscale(1) brightness(0.5);
+    }
+  }
+
+  /* Optimize galaxy glow for mobile */
+  #intro-overlay.galaxy-arrival::before {
+    background: radial-gradient(circle at center,
+        rgba(100, 150, 255, 0.25) 0%,
+        rgba(50, 100, 200, 0.12) 30%,
+        transparent 55%);
+  }
+
+  /* Reduce blur on shining reveal for better mobile performance */
+  @keyframes shiningReveal {
+    0% {
+      filter: brightness(4) blur(15px) contrast(1.8);
+      opacity: 0;
+      transform: scale(0.85);
+    }
+
+    30% {
+      filter: brightness(2.5) blur(8px) contrast(1.4);
+      opacity: 0.5;
+    }
+
+    60% {
+      filter: brightness(1.3) blur(2px) contrast(1.1);
+      opacity: 0.8;
+    }
+
+    100% {
+      filter: brightness(1) blur(0) contrast(1);
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+
+  /* Further reduce star size for very small screens */
+  .galaxy-star {
+    width: 2px !important;
+    height: 2px !important;
+  }
+
+  /* Lighter effects for small mobile */
+  #intro-video.dust-effect {
+    filter: blur(6px) contrast(1.2) grayscale(1);
+  }
+
+  @keyframes dissolve {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0px) grayscale(0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scale(1.05);
+      filter: blur(20px) grayscale(1) brightness(0.6);
+    }
+  }
+
+  /* Subtle glow for small screens */
+  #intro-overlay.galaxy-arrival::before {
+    background: radial-gradient(circle at center,
+        rgba(100, 150, 255, 0.2) 0%,
+        rgba(50, 100, 200, 0.1) 25%,
+        transparent 50%);
+  }
+
+  /* Minimal blur for small devices */
+  @keyframes shiningReveal {
+    0% {
+      filter: brightness(3) blur(10px) contrast(1.5);
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    30% {
+      filter: brightness(2) blur(5px) contrast(1.3);
+      opacity: 0.5;
+    }
+
+    60% {
+      filter: brightness(1.2) blur(1px) contrast(1.05);
+      opacity: 0.8;
+    }
+
+    100% {
+      filter: brightness(1) blur(0) contrast(1);
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+/* ==============================
+    RESPONSIVE - ALL IMAGES
+   ============================== */
+
+/* Tablet devices (1024px and below) */
+@media (max-width: 1024px) {
+
+  /* Event card images */
+  .card-front img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 240px;
+    object-fit: cover;
+  }
+
+  /* Speaker photos */
+  .speaker-card .photo img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 220px;
+    max-height: 260px;
+    object-fit: cover;
+  }
+
+  /* Sponsor logos */
+  .sponsor-card .logo img,
+  .sponsor-card>img {
+    max-width: 75% !important;
+    max-height: 130px !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  /* Footer logo */
+  .footer-logo-section img {
+    max-width: 180px !important;
+    height: auto !important;
+  }
+
+  /* Footer social icons */
+  .social-item img {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
+
+/* Mobile devices (768px and below) */
+@media (max-width: 768px) {
+
+  /* Header logo */
+  .logo-section img {
+    height: 50px !important;
+    width: auto !important;
+    transform: scale(1.1) !important;
+  }
+
+  .logo-section img:hover {
+    transform: scale(1.2) !important;
+  }
+
+  /* Event card images */
+  .card-front img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 220px;
+    max-height: 280px;
+    object-fit: cover;
+  }
+
+  /* Speaker photos */
+  .speaker-card .photo img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 180px;
+    max-height: 220px;
+    object-fit: cover;
+  }
+
+  /* Sponsor logos */
+  .sponsor-card .logo img,
+  .sponsor-card>img {
+    max-width: 70% !important;
+    max-height: 110px !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  /* Footer logo */
+  .footer-logo-section img {
+    max-width: 150px !important;
+    height: auto !important;
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* Footer social icons */
+  .social-item img {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* Ensure no margins/padding on body/html to remove black borders */
+  body,
+  html {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+
+  /* Remove the spacer on mobile to let hero start at top */
+  header {
+    height: 0 !important;
+  }
+
+  /* Force hero to occupy exact viewport dimensions */
+  .hero {
+    height: 100dvh !important;
+    /* Use dynamic height for mobile */
+    width: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+  }
+
+  /* Force video to cover every pixel and show the bottom content */
+  .hero-video {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center bottom !important;
+    /* Ensures "ENSPIRE 26" at the bottom is visible */
+    z-index: 0 !important;
+    transform: none !important;
+  }
+
+  .desktop-video {
+    display: none !important;
+  }
+
+  .mobile-video {
+    display: block !important;
+  }
+
+  /* Reposition button below the enspire text */
+  .hero .btn {
+    margin: 0 0 15px 0 !important;
+    /* Move it to the very bottom edge */
+    position: relative !important;
+    z-index: 10 !important;
+    padding: 10px 20px !important;
+    font-size: 13px !important;
+  }
+
+  /* Intro video */
+  #intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Small mobile devices (480px and below) */
+@media (max-width: 480px) {
+
+  /* Header logo */
+  .logo-section img {
+    height: 40px !important;
+    width: auto !important;
+    transform: scale(1) !important;
+  }
+
+  .logo-section img:hover {
+    transform: scale(1.1) !important;
+  }
+
+  /* Event card adjustments */
+  .event-card {
+    height: 300px !important;
+    width: 280px !important;
+    margin: 0 auto;
+  }
+
+  .card-front img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .card-hover h2 {
+    font-size: 1.1rem !important;
+  }
+
+  .card-hover h4 {
+    font-size: 0.8rem !important;
+  }
+
+  /* Speaker photos */
+  .speaker-card .photo img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* Sponsor logos */
+  .sponsor-card .logo img,
+  .sponsor-card>img {
+    max-width: 65% !important;
+    max-height: 90px !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  /* Footer logo */
+  .footer-logo-section img {
+    max-width: 120px !important;
+    height: auto !important;
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* Footer social icons */
+  .social-item img {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  /* Ensure all images maintain aspect ratio */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Extra small devices (360px and below) */
+@media (max-width: 360px) {
+
+  /* Header logo */
+  .logo-section img {
+    height: 35px !important;
+    width: auto !important;
+  }
+
+  /* Event card adjustments */
+  .event-card {
+    height: 280px !important;
+    width: 260px !important;
+    margin: 0 auto;
+  }
+
+  .card-front img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* Speaker photos */
+  .speaker-card .photo img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 140px;
+    max-height: 180px;
+  }
+
+  /* Sponsor logos */
+  .sponsor-card {
+    width: 120px !important;
+    height: 150px !important;
+  }
+
+  .sponsor-card .logo img,
+  .sponsor-card>img {
+    max-width: 60% !important;
+    max-height: 60px !important;
+  }
+
+  /* Footer logo */
+  .footer-logo-section img {
+    max-width: 100px !important;
+    height: auto !important;
+  }
+
+  /* Footer social icons */
+  .social-item img {
+    width: 14px !important;
+    height: 14px !important;
+  }
+}
+
+/* Mobile Center Image */
+.mobile-center-image {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-center-image {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 80%;
+    width: auto;
+    height: auto;
+    z-index: 1;
+    /* Above video (0), below content (2) */
+    pointer-events: none;
+  }
+}
+
+/* ===========================
+   ALUMNI SECTION STYLING
+=========================== */
+
+.alumni-section {
+  padding: 3rem 2rem 5rem 2rem;
+  background: transparent;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Alumni Grid */
+.alumni-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Alumni Card */
+.alumni-card {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  cursor: pointer;
+  box-shadow: 0 5px 5px rgb(255, 255, 255);
+  border: 2px solid rgb(255, 255, 255);
+  transition: all 0.4s ease;
+}
+
+.alumni-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgb(255, 255, 255);
+  border-color: rgb(255, 255, 255);
+}
+
+/* Alumni Image */
+.alumni-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+
+.alumni-card:hover img {
+  transform: scale(1.1);
+  filter: brightness(0.6);
+}
+
+/* Alumni Overlay */
+.alumni-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+  padding: 2rem 1.5rem;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+
+.alumni-card:hover .alumni-overlay {
+  transform: translateY(0);
+}
+
+.alumni-overlay h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.alumni-overlay p {
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .alumni-section {
+    padding: 2rem 1rem 3rem 1rem;
+  }
+
+  .alumni-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .alumni-overlay h3 {
+    font-size: 1.2rem;
+  }
+
+  .alumni-overlay p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .alumni-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .alumni-overlay {
+    padding: 1rem;
+  }
+
+  .alumni-overlay h3 {
+    font-size: 1rem;
+  }
+
+  .alumni-overlay p {
+    font-size: 0.8rem;
+  }
 }

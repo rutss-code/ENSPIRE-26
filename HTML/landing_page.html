@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800;900&display=swap"
         rel="stylesheet">
     <title>ECELL DMCE</title>
@@ -11,92 +12,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../Images/Logo/Enspire-logo.png" type="image/x-icon">
 </head>
+
 <body>
+     <!-- INTRO OVERLAY -->
+    <div id="intro-overlay">
+        <video id="intro-video" playsinline>
+            <source src="../Images/intro/thanos.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="dust-particles"></div>
+    </div>
+     <div id="main-content" style="opacity: 0; pointer-events: none; transition: opacity 1.5s ease;"></div>
+
 
     <!-- NAVBAR -->
-<header>
-  <div class="logo">
-    <img src="../Images/Logo/Ecell-logo-removebg-preview.png" alt="Logo" style="height: 30px;">
-  </div>
-
-  <nav id="nav-menu">
-    <ul>
-      <li><a href="../HTML/landing_page.html" class="active">Home</a></li>
-      <li><a href="../HTML/Event_page.html">Events</a></li>
-      <li><a href="../HTML/speaker.html">Speakers</a></li>
-      <li><a href="../HTML/Sponsor.html">Sponsors</a></li>
-      <li><a href="../HTML/contact_us.html">Contact US</a></li>
-      <li><a href="../HTML/faq.html">FAQs</a></li>
-    </ul>
-  </nav>
-
-  <div class="pass-btn-container">
-    <a href="../HTML/passes.html" class="pass-btn">
-      <img src="../Images/Event page/Passes.jpeg" alt="Passes" style="height: 40px; border-radius: 5px;">
-    </a>
-  </div>
-  
-  <div class="hamburger" id="hamburger">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
-</header>
+    <header>
+            <div class="header-content">
+                <div class="logo-section">
+                    <a href=""><img src="../Images/Logo/Ecell-logo.png" alt="E-CELL DMCE Logo"></a>
+                    <span class="logo-text"></span>
+                </div>
+                <button class="hamburger" onclick="toggleMenu()">☰</button>
+                <nav class="custom-nav">
+                    <a href="../Home.html" class="active">Home</a>
+                    <a href="../HTML/events.html">Events</a>
+                    <a href="../HTML/speakers.html">Speakers</a>
+                    <a href="../HTML/sponsors.html">Sponsors</a>
+                    <a href="../HTML/contact.html">Contact Us</a>
+                    <a href="../HTML/faqs.html">FAQs</a>
+                    <a href="../HTML/passes.html" class="pass-wrapper">
+                        <button class="nav-passes">
+                            <span class="passes-text">PASSES</span>
+                        </button>
+                    </a>
+                </nav>
+                <div class="mobile-nav" id="mobileNav">
+                    <a href="../Home.html" class="active">Home</a>
+                    <a href="../HTML/events.html">Events</a>
+                    <a href="../HTML/speakers.html">Speakers</a>
+                    <a href="../HTML/sponsors.html">Sponsors</a>
+                    <a href="../HTML/contact.html">Contact Us</a>
+                    <a href="../HTML/faqs.html">FAQs</a>
+                    <a href="../HTML/passes.html"> PASSES</a>
+                </div>
+        </header>
     <!-- HERO -->
 
 <section class="hero">
-  <!-- Background Video -->
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="../Images/Bg-img/Video_Edits_Logo_Static_Blue_Stone_Full.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+            <!-- Background Video -->
+            <video class="hero-video desktop-video" autoplay muted loop playsinline>
+                <source src="../Images/Bg-img/Animating_Background_Stones_Only.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video class="hero-video mobile-video" autoplay muted loop playsinline>
+                <source src="../Images/Bg-img/Animate_the_provided_1080p_202602021648.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <!-- Mobile Center Image -->
+            <img src="../Images/Bg-img/Picsart_26-02-06_00-57-19-995.png" class="mobile-center-image"
+                alt="Mobile Hero Center Image">
+
+        <!-- Hero Content -->
+        <div class="content">
 
 
-       
-<!-- Hero Content --> 
-    <div class="content"> 
-        <a href="brochure/Enspire_2026_Brochure.pdf" download target="_blank">
-    <button class="btn">Download Brochure</button>
-</a>
-    </div> 
-</section>
-    
-<div class="unified-bg-wrapper space-bg">
-    
-    <video autoplay muted loop playsinline class="unified-video-bg">
-        <source src="../Images/Bg-img/vecteezy_seamless-loop-galaxy-exploration-through-outer-space-towards_1.mp4" type="video/mp4">
-    </video>
+            <button class="btn">Download Brochure</button>
+        </div>
+    </section>
 
+    <div class="unified-bg-wrapper space-bg">
         <!-- ABOUT -->
         <section class="about">
-            
             <h2 class="about-title">ABOUT ENSPIRE’26</h2>
 
-            <p class="about-text">
-                Enspire is the flagship entrepreneurship initiative of E-Cell DMCE, designed to ignite innovation,
-                creativity, and leadership among students. It serves as a dynamic platform where ideas evolve into
-                impactful ventures through hands-on learning, mentorship, and real-world exposure.
-            </p>
+                <p class="about-text">
+                    Enspire is the flagship entrepreneurship initiative of E-Cell DMCE, designed to ignite innovation,
+                    creativity, and leadership among students. It serves as a dynamic platform where ideas evolve into
+                    impactful ventures through hands-on learning, mentorship, and real-world exposure.
+                </p>
 
-            <p class="about-text">
-                Through workshops, competitions, speaker sessions, and startup-focused programs, Enspire empowers
-                aspiring entrepreneurs to think boldly, collaborate effectively, and build solutions that address
-                real challenges. It bridges the gap between ideas and execution by connecting students with mentors,
-                industry experts, and a thriving entrepreneurial ecosystem.
-            </p>
+                <p class="about-text">
+                    Through workshops, competitions, speaker sessions, and startup-focused programs, Enspire empowers
+                    aspiring entrepreneurs to think boldly, collaborate effectively, and build solutions that address
+                    real challenges. It bridges the gap between ideas and execution by connecting students with mentors,
+                    industry experts, and a thriving entrepreneurial ecosystem.
+                </p>
 
-            <p class="about-text highlight">
-                Enspire is not just an event – it is a movement that inspires students to innovate, take risks, and
-                lead the future.
-            </p>
-        </section>
-        <!-- EVENTS -->
-        <section class="events-section">
-            <h1 class="events-title" style="margin-left: 1rem;">EVENTS</h1>
+                <p class="about-text highlight">
+                    Enspire is not just an event – it is a movement that inspires students to innovate, take risks, and
+                    lead the future.
+                </p>
+            </section>
+            <!-- EVENTS -->
+            <section class="events-section">
+                <h1 class="events-title">EVENTS</h1>
 
-            <div class="events-grid">
+                <div class="events-grid">
 
-        <!-- IDEATHON -->
+ <!-- IDEATHON -->
         <div class="event-card ideathon">
             <div class="card-front">
                 <img src="../images/events/ideathon.png" style="width: 255px;height: 340px;">
@@ -112,7 +126,7 @@
             </div>
         </div>
 
-        <!-- SPEAKER SESSION -->
+<!-- SPEAKER SESSION -->
         <div class="event-card speaker">
             <div class="card-front">
                 <img src="../images/events/tedx.png" style="width: 255px;height: 340px;">
@@ -128,7 +142,7 @@
             </div>
         </div>
 
-        <!-- STARTUP HUB -->
+                 <!-- STARTUP HUB -->
         <div class="event-card startup">
             <div class="card-front">
                 <img src="../images/events/startup.png" style="width: 255px;height: 340px;">
@@ -144,7 +158,7 @@
             </div>
         </div>
 
-        <!-- IPL AUCTION -->
+            <!-- IPL AUCTION -->
         <div class="event-card auction">
             <div class="card-front">
                 <img src="../images/events/auction.png" style="width: 280px;height: 340px; padding-left: 10px;">
@@ -164,7 +178,7 @@
             </div>
         </div>
 
-        <!-- TECHXPIRE -->
+<!-- TECHXPIRE -->
         <div class="event-card tech">
             <div class="card-front">
                 <img src="../images/events/techxpire.png" style="width: 255px;height: 340px;">
@@ -184,7 +198,7 @@
             </div>
         </div>
 
-        <!-- VR ARENA -->
+<!-- VR ARENA -->
         <div class="event-card vr">
             <div class="card-front">
                 <img src="../images/events/vrarena.png" style="width: 255px;height: 340px;">
@@ -200,236 +214,285 @@
             </div>
         </div>
 
-    </div>
-</section>
-
+            </div>
+        </section>
         <section class="current-speakers-section">
 
-            <h1 class="title">CURRENT SPEAKERS</h1>
+                <h1 class="title">CURRENT SPEAKERS</h1>
 
-            <div class="carousel-section">
-                <div class="carousel-container" style="margin-top: 100px;">
-                    <div class="speaker-card">
-                        <div class="photo">
-                            <img src="../images/Speakers/speaker1.png" style="width: 240px;height: 280px;">
+                <div class="carousel-section">
+                    <div class="carousel-container">
+                        <div class="speaker-card">
+                            <div class="photo">
+                                <img src="../images/Speakers/28_20260203_001449_0000 (1).jpg">
+                            </div>
+                            <div class="info">
+                                <div class="name">MS. ANNAMIKA SHUKLA</div>
+                                <div class="role">(Corporate Communication Trainer & Public Speaking Coach)</div>
+                            </div>
                         </div>
-                        <div class="info">
-                            <div class="name">MS. ANNAMIKA SHUKLA</div>
-                            <div class="role">(Corporate Communication Trainer & Public Speaking Coach)</div>
+
+                        <div class="speaker-card">
+                            <div class="photo">
+                                <img src="../images/Speakers/29_20260203_001449_0001.jpg">
+                            </div>
+                            <div class="info">
+                                <div class="name">Mr. AMAR KHANNA</div>
+                                <div class="role">(Founder of AngryTraders)</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="speaker-card">
-                        <div class="photo">
-                            <img src="../images/Speakers/speaker2.png" style="width: 240px;height: 280px;">
-                        </div>
-                        <div class="info">
-                            <div class="name">Mr. AMAR KHANNA</div>
-                            <div class="role">(Founder of AngryTraders)</div>
-                        </div>
-                    </div>
-
-                    <div class="speaker-card">
-                        <div class="photo">
-                            <img src="../images/Speakers/speaker3.png" style="width: 240px;height: 280px;">
-                        </div>
-                        <div class="info">
-                            <div class="name">Mr. Raj Padhiyar</div>
-                            <div class="role">(Founder & CEO, Digital Gurukul)</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script src="../JS/landing_page.js"></script>
-
-        </section>
-
-        <h1 class="title" style="padding-top: 5rem;padding-bottom: 5rem;">CURRENT SPONSERS</h1>
-        <!-- SPONSORS GRID -->
-        <section class="marquee-container-sponsors" style="
-    padding-bottom: 20rem;">
-            <div class="marquee-track-sponsors">
-                <!-- Row 1 -->
-                <div class="sponsor-card blue">
-                    <div class="logo"><img src="../images/Sponsor/paradise.png" alt="Paradise Group logo"></div>
-                    <p>Associate Partner</p>
-                </div>
-
-                <div class="sponsor-card yellow">
-                    <div class="logo"><img src="../images/Sponsor/upgrad.png" alt="upGrad logo"></div>
-                    <p>Academic Partner</p>
-                </div>
-
-                <div class="sponsor-card red">
-                    <div class="logo"><img src="../images/Sponsor/Maannomay.png" alt="Maanomay logo"></div>
-                    <p>Enterprise Partner</p>
-                </div>
-
-                <!-- Row 2 -->
-                <div class="sponsor-card green">
-                    <div class="logo"><img src="../images/Sponsor/Si-UK.png" alt="SI-UK logo"></div>
-                    <p>Study Abroad Partner</p>
-                </div>
-
-                <div class="sponsor-card purple">
-                    <div class="logo"><img src="../images/Sponsor/Habbit.png" alt="Rio logo"></div>
-                    <p>Beverage Partner</p>
-                </div>
-
-                <div class="sponsor-card orange">
-                    <div class="logo"><img src="../images/Sponsor/siddhi vinayak.png" alt="Siddhivinayak logo"></div>
-                    <p>Digital Media Partner</p>
-                </div>
-
-                <!-- Row 3 -->
-                <div class="sponsor-card neon-blue">
-                    <div class="logo"><img src="../images/Sponsor/rvr arena.png" alt="PVR World logo"></div>
-                    <p>Gaming Partner</p>
-                </div>
-
-                <div class="sponsor-card yellow">
-                    <div class="logo"><img src="../images/Sponsor/Social Affair.png" alt="Social Affair logo"></div>
-                    <p>Refreshment Partner</p>
-                </div>
-
-                <div class="sponsor-card red">
-                    <div class="logo"><img src="../images/Sponsor/Coasyloom.png" alt="Cosyloom logo"></div>
-                    <p>Clothing Partner</p>
-                </div>
-
-                <div class="sponsor-card green">
-                    <div class="logo"><img src="../images/Sponsor/Qspiders.jpg" alt="QSpiders logo"></div>
-                    <p>Associate Partner</p>
-                </div>
-
-                <div class="sponsor-card purple">
-                    <div class="logo"><img src="../images/Sponsor/KrawlNet.png" alt="KrawlNet logo"></div>
-                    <p>Technical Partner</p>
-                </div>
-
-                <!-- Duplicate cards for seamless loop -->
-                <div class="sponsor-card blue">
-                    <div class="logo"><img src="../images/Sponsor/paradise.png" alt="Paradise Group logo"></div>
-                    <p>Associate Partner</p>
-                </div>
-
-                <div class="sponsor-card yellow">
-                    <div class="logo"><img src="../images/Sponsor/upgrad.png" alt="upGrad logo"></div>
-                    <p>Academic Partner</p>
-                </div>
-
-                <div class="sponsor-card red">
-                    <div class="logo"><img src="../images/Sponsor/Maannomay.png" alt="Maanomay logo"></div>
-                    <p>Enterprise Partner</p>
-                </div>
-
-                <div class="sponsor-card green">
-                    <div class="logo"><img src="../images/Sponsor/Si-UK.png" alt="SI-UK logo"></div>
-                    <p>Study Abroad Partner</p>
-                </div>
-
-                <div class="sponsor-card purple">
-                    <div class="logo"><img src="../images/Sponsor/Habbit.png" alt="Rio logo"></div>
-                    <p>Beverage Partner</p>
-                </div>
-
-                <div class="sponsor-card orange">
-                    <div class="logo"><img src="../images/Sponsor/siddhi vinayak.png" alt="Siddhivinayak logo"></div>
-                    <p>Digital Media Partner</p>
-                </div>
-
-                <div class="sponsor-card neon-blue">
-                    <div class="logo"><img src="../images/Sponsor/rvr arena.png" alt="PVR World logo"></div>
-                    <p>Gaming Partner</p>
-                </div>
-
-                <div class="sponsor-card yellow">
-                    <div class="logo"><img src="../images/Sponsor/Social Affair.png" alt="Social Affair logo"></div>
-                    <p>Refreshment Partner</p>
-                </div>
-
-                <div class="sponsor-card red">
-                    <div class="logo"><img src="../images/Sponsor/Coasyloom.png" alt="Cosyloom logo"></div>
-                    <p>Clothing Partner</p>
-                </div>
-
-                <div class="sponsor-card green">
-                    <div class="logo"><img src="../images/Sponsor/Qspiders.jpg" alt="QSpiders logo"></div>
-                    <p>Associate Partner</p>
-                </div>
-
-                <div class="sponsor-card purple">
-                    <div class="logo"><img src="../images/Sponsor/KrawlNet.png" alt="KrawlNet logo"></div>
-                    <p>Technical Partner</p>
-                </div>
-            </div>
-        </section>
-    </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-grid">
-                <div class="footer-logo-section">
-                    <img src="../Images/Logo/Ecell-logo.png" alt="E-CELL DMCE Logo">
-                    <p>📍 Location: Datta Meghe College of Engineering, Sector 3, Airoli, Navi Mumbai</p>
-                </div>
-
-                <div class="footer-links-section">
-                    <div class="footer-column">
-                        <h3>Quick Links</h3>
-                        <a href="../Home.html">Home</a>
-                        <a href="../HTML/aboutus.html">About Us</a>
-                        <a href="../HTML/event.html">Event</a>
-                        <a href="../HTML/gallery.html">Gallery</a>
-                        <a href="../HTML/Team_Members.html">Team</a>
-                        <a href="../HTML/intiaitive.html">INITIATIVES</a>
-                        <a href="../HTML/contact.html">Contact</a>
-                    </div>
-
-                    <div class="footer-column">
-                        <h3>Resources</h3>
-                        <a href="#">FAQs</a>
-                        <a href="#">Register</a>
-                        <a href="#">Volunteer</a>
-                    </div>
-
-                    <div class="footer-column">
-                        <h3>Legal</h3>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms & Conditions</a>
-                    </div>
-
-                    <div class="footer-column social-links">
-                        <h3>Contact Us</h3>
-                        <div class="social-item">
-                            <img src="../Images/Icons/mail.png" alt="mail">
-                            <a href="#" target="_blank">Ecell.dmce.14@gmail.com </a>
-                        </div>
-                        <div class="social-item">
-                            <img src="../Images/Icons/linkdin.png" alt="LinkedIn">
-                            <a href="#" target="_blank">ecell_dmce</a>
-                        </div>
-                        <div class="social-item">
-                            <img src="../Images/Icons/facebook.png" alt="facebook">
-                            <a href="#" target="_blank">ECell_DMCE</a>
-                        </div>
-                        <div class="social-item">
-                            <img src="../Images/Icons/insta.png" alt="instagram">
-                            <a href="#" target="_blank">ECell_DMCE</a>
+                        <div class="speaker-card">
+                            <div class="photo">
+                                <img src="../images/Speakers/30_20260203_001449_0002.jpg">
+                            </div>
+                            <div class="info">
+                                <div class="name">Mr. Raj Padhiyar</div>
+                                <div class="role">(Founder & CEO, Digital Gurukul)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="footer-divider"></div>
-            <p class="copyright">© 2025 ECELL | E-CELL DMCE. All Rights Reserved.</p>
+                <script src="../JS/landing_page.js"></script>
+
+            </section>
+            <!-- <h1 class="title sponsors-title">ALUMNI</h1> -->
+            <!-- ALUMNI SECTION -->
+            <!-- <section class="alumni-section">
+                <div class="alumni-grid">
+                    <div class="alumni-card">
+                        <img src="../Images/alumni/alumni1.png" alt="Alumni 1">
+                        <div class="alumni-overlay">
+                            <h3>Alumni Name</h3>
+                            <p>Class of 2020</p>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="../Images/alumni/alumni2.png" alt="Alumni 2">
+                        <div class="alumni-overlay">
+                            <h3>Alumni Name</h3>
+                            <p>Class of 2019</p>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="../Images/alumni/alumni3.png" alt="Alumni 3">
+                        <div class="alumni-overlay">
+                            <h3>Alumni Name</h3>
+                            <p>Class of 2021</p>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="../Images/alumni/alumni4.png" alt="Alumni 4">
+                        <div class="alumni-overlay">
+                            <h3>Alumni Name</h3>
+                            <p>Class of 2018</p>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="../Images/alumni/alumni5.png" alt="Alumni 5">
+                        <div class="alumni-overlay">
+                            <h3>Alumni Name</h3>
+                            <p>Class of 2020</p>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="../Images/alumni/alumni6.png" alt="Alumni 6">
+                        <div class="alumni-overlay">
+                            <h3>Alumni Name</h3>
+                            <p>Class of 2019</p>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+            <!-- SPONSORS GRID -->
+            <h1 class="title sponsors-title">CURRENT SPONSERS</h1>
+            <!-- SPONSORS GRID -->
+            <section class="marquee-container-sponsors">
+                <div class="marquee-track-sponsors">
+                    <!-- Row 1 -->
+                    <div class="sponsor-card blue">
+                        <div class="logo"><img src="../images/Sponsor/paradise.png" alt="Paradise Group logo"></div>
+                        <p>Associate Partner</p>
+                    </div>
+
+                    <div class="sponsor-card yellow">
+                        <div class="logo"><img src="../images/Sponsor/upgrad.png" alt="upGrad logo"></div>
+                        <p>Academic Partner</p>
+                    </div>
+
+                    <div class="sponsor-card red">
+                        <div class="logo"><img src="../images/Sponsor/Maannomay.png" alt="Maanomay logo"></div>
+                        <p>Enterprise Partner</p>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="sponsor-card green">
+                        <div class="logo"><img src="../images/Sponsor/Si-UK.png" alt="SI-UK logo"></div>
+                        <p>Study Abroad Partner</p>
+                    </div>
+
+                    <div class="sponsor-card purple">
+                        <div class="logo"><img src="../images/Sponsor/Habbit.png" alt="Rio logo"></div>
+                        <p>Beverage Partner</p>
+                    </div>
+
+                    <div class="sponsor-card orange">
+                        <div class="logo"><img src="../images/Sponsor/siddhi vinayak.png" alt="Siddhivinayak logo">
+                        </div>
+                        <p>Digital Media Partner</p>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="sponsor-card neon-blue">
+                        <div class="logo"><img src="../images/Sponsor/rvr arena.png" alt="PVR World logo"></div>
+                        <p>Gaming Partner</p>
+                    </div>
+
+                    <div class="sponsor-card yellow">
+                        <div class="logo"><img src="../images/Sponsor/Social Affair.png" alt="Social Affair logo"></div>
+                        <p>Refreshment Partner</p>
+                    </div>
+
+                    <div class="sponsor-card red">
+                        <div class="logo"><img src="../images/Sponsor/Coasyloom.png" alt="Cosyloom logo"></div>
+                        <p>Clothing Partner</p>
+                    </div>
+
+                    <div class="sponsor-card green">
+                        <div class="logo"><img src="../images/Sponsor/Qspiders.jpg" alt="QSpiders logo"></div>
+                        <p>Associate Partner</p>
+                    </div>
+
+                    <div class="sponsor-card purple">
+                        <div class="logo"><img src="../images/Sponsor/KrawlNet.png" alt="KrawlNet logo"></div>
+                        <p>Technical Partner</p>
+                    </div>
+
+                    <!-- Duplicate cards for seamless loop -->
+                    <div class="sponsor-card blue">
+                        <div class="logo"><img src="../images/Sponsor/paradise.png" alt="Paradise Group logo"></div>
+                        <p>Associate Partner</p>
+                    </div>
+
+                    <div class="sponsor-card yellow">
+                        <div class="logo"><img src="../images/Sponsor/upgrad.png" alt="upGrad logo"></div>
+                        <p>Academic Partner</p>
+                    </div>
+
+                    <div class="sponsor-card red">
+                        <div class="logo"><img src="../images/Sponsor/Maannomay.png" alt="Maanomay logo"></div>
+                        <p>Enterprise Partner</p>
+                    </div>
+
+                    <div class="sponsor-card green">
+                        <div class="logo"><img src="../images/Sponsor/Si-UK.png" alt="SI-UK logo"></div>
+                        <p>Study Abroad Partner</p>
+                    </div>
+
+                    <div class="sponsor-card purple">
+                        <div class="logo"><img src="../images/Sponsor/Habbit.png" alt="Rio logo"></div>
+                        <p>Beverage Partner</p>
+                    </div>
+
+                    <div class="sponsor-card orange">
+                        <div class="logo"><img src="../images/Sponsor/siddhi vinayak.png" alt="Siddhivinayak logo">
+                        </div>
+                        <p>Digital Media Partner</p>
+                    </div>
+
+                    <div class="sponsor-card neon-blue">
+                        <div class="logo"><img src="../images/Sponsor/rvr arena.png" alt="PVR World logo"></div>
+                        <p>Gaming Partner</p>
+                    </div>
+
+                    <div class="sponsor-card yellow">
+                        <div class="logo"><img src="../images/Sponsor/Social Affair.png" alt="Social Affair logo"></div>
+                        <p>Refreshment Partner</p>
+                    </div>
+
+                    <div class="sponsor-card red">
+                        <div class="logo"><img src="../images/Sponsor/Coasyloom.png" alt="Cosyloom logo"></div>
+                        <p>Clothing Partner</p>
+                    </div>
+
+                    <div class="sponsor-card green">
+                        <div class="logo"><img src="../images/Sponsor/Qspiders.jpg" alt="QSpiders logo"></div>
+                        <p>Associate Partner</p>
+                    </div>
+
+                    <div class="sponsor-card purple">
+                        <div class="logo"><img src="../images/Sponsor/KrawlNet.png" alt="KrawlNet logo"></div>
+                        <p>Technical Partner</p>
+                    </div>
+                </div>
+            </section>
         </div>
-    </footer>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <div class="footer-logo-section">
+                        <img src="../Images/Logo/Ecell-logo.png" alt="E-CELL DMCE Logo">
+                        <p>📍 Location: Datta Meghe College of Engineering, Sector 3, Airoli, Navi Mumbai</p>
+                    </div>
+
+                    <div class="footer-links-section">
+                        <div class="footer-column">
+                            <h3>Quick Links</h3>
+                            <a href="../Home.html">Home</a>
+                            <a href="../HTML/aboutus.html">About Us</a>
+                            <a href="../HTML/event.html">Event</a>
+                            <a href="../HTML/gallery.html">Gallery</a>
+                            <a href="../HTML/Team_Members.html">Team</a>
+                            <a href="../HTML/intiaitive.html">INITIATIVES</a>
+                            <a href="../HTML/contact.html">Contact</a>
+                        </div>
+
+                        <div class="footer-column">
+                            <h3>Resources</h3>
+                            <a href="#">FAQs</a>
+                            <a href="#">Register</a>
+                            <a href="#">Volunteer</a>
+                        </div>
+
+                        <div class="footer-column">
+                            <h3>Legal</h3>
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms & Conditions</a>
+                        </div>
+
+                        <div class="footer-column social-links">
+                            <h3>Contact Us</h3>
+                            <div class="social-item">
+                                <img src="../Images/Icons/mail.png" alt="mail">
+                                <a href="#" target="_blank">Ecell.dmce.14@gmail.com </a>
+                            </div>
+                            <div class="social-item">
+                                <img src="../Images/Icons/linkdin.png" alt="LinkedIn">
+                                <a href="#" target="_blank">ecell_dmce</a>
+                            </div>
+                            <div class="social-item">
+                                <img src="../Images/Icons/facebook.png" alt="facebook">
+                                <a href="#" target="_blank">ECell_DMCE</a>
+                            </div>
+                            <div class="social-item">
+                                <img src="../Images/Icons/insta.png" alt="instagram">
+                                <a href="#" target="_blank">ECell_DMCE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-divider"></div>
+                <p class="copyright">© 2025 ECELL | E-CELL DMCE. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../JS/contact.js"></script>
-
+</body>
 </body>
 
 </html>
