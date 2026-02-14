@@ -144,8 +144,13 @@ nav ul li:hover {
 
 /* Hero Section */
 .hero {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 120px 0 20px !important;
+    /* Top padding to account for fixed header */
     text-align: center;
-    padding: 20px 0 10px;
+    display: block !important;
+    /* Remove flex centering */
 }
 
 .main-heading {
@@ -163,7 +168,7 @@ nav ul li:hover {
     justify-content: center;
     align-items: center;
     gap: 40px;
-    padding: 100px 20px;
+    padding: 40px 20px 100px;
     flex-wrap: wrap;
 }
 
