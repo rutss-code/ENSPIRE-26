@@ -142,3 +142,53 @@ function toggleMenu() {
     }
 }
 // --- END MOBILE NAV TOGGLE ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    const video = document.getElementById('intro-video');
+    const mainContent = document.getElementById('main-content');
+    const introOverlay = document.getElementById('intro-overlay');
+
+    // 1. Navbar Toggle Logic
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // 2. Intro Video Transition
+    function revealSite() {
+        if (introOverlay) {
+            introOverlay.style.opacity = '0';
+            setTimeout(() => {
+                introOverlay.style.display = 'none';
+                mainContent.style.opacity = '1';
+                mainContent.style.pointerEvents = 'all';
+            }, 1000);
+        }
+    }
+
+    if (video) {
+        video.onended = revealSite;
+        // Safety timeout if video fails
+        setTimeout(revealSite, 6000);
+    } else {
+        revealSite();
+    }
+});
+
+// Ensure this is in your landing_page.js
+const video = document.getElementById('intro-video');
+const mainContent = document.getElementById('main-content');
+
+video.onended = function() {
+    document.getElementById('intro-overlay').style.opacity = '0';
+    setTimeout(() => {
+        document.getElementById('intro-overlay').style.display = 'none';
+        mainContent.classList.add('main-content-visible');
+        mainContent.style.opacity = '1';
+        mainContent.style.pointerEvents = 'all';
+    }, 1000);
+};
