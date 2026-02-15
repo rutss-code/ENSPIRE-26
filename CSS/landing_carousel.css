@@ -64,18 +64,55 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .carousel-container {
-        height: 400px;
+        height: 300px;
     }
 
     .carousel-container .speaker-card {
-        width: 240px;
+        width: 160px;
+        /* Match landing.css */
     }
 
     .carousel-container .speaker-card.c-prev {
-        transform: translateX(-110%) scale(0.8) translateZ(-100px);
+        transform: translateX(-120%) scale(0.8) translateZ(-100px);
+        /* Increased spacing */
     }
 
     .carousel-container .speaker-card.c-next {
-        transform: translateX(110%) scale(0.8) translateZ(-100px);
+        transform: translateX(120%) scale(0.8) translateZ(-100px);
+        /* Increased spacing */
+    }
+
+    /* Make speaker images responsive */
+    .speaker-card .photo img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        height: 250px;
+    }
+
+    .carousel-container .speaker-card {
+        width: 130px;
+    }
+
+    .carousel-container .speaker-card.c-prev {
+        transform: translateX(-110%) scale(0.7) translateZ(-100px);
+        /* Increased spacing */
+    }
+
+    .carousel-container .speaker-card.c-next {
+        transform: translateX(110%) scale(0.7) translateZ(-100px);
+        /* Increased spacing */
+    }
+
+    /* Make speaker images responsive for small mobile */
+    .speaker-card .photo img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
     }
 }

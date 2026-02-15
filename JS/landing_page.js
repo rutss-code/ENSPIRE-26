@@ -1,4 +1,89 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- INTRO VIDEO LOGIC ---
+    const introOverlay = document.getElementById('intro-overlay');
+    const introVideo = document.getElementById('intro-video');
+    const snapAnimation = document.getElementById('snap-animation');
+    const mainContent = document.getElementById('main-content');
+    const body = document.body;
+
+    if (introVideo && introOverlay) {
+        body.classList.add('intro-active');
+
+        // Attempt to play
+        introVideo.play().catch(() => {
+            introVideo.muted = true;
+            introVideo.play();
+        });
+
+        introVideo.onended = () => {
+            introVideo.classList.add('dust-effect');
+
+            // --- FALLING INTO GALAXY EFFECT ---
+            const particleContainer = document.getElementById('dust-particles');
+
+            // Create dense starfield - you're falling INTO the galaxy
+            const totalStars = 800;
+
+            for (let i = 0; i < totalStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'galaxy-star';
+
+                // Calculate random angle for positioning
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 80 + Math.random() * 60; // Start far from center
+
+                // Start position (edge of screen)
+                const startX = 50 + Math.cos(angle) * distance;
+                const startY = 50 + Math.sin(angle) * distance;
+
+                star.style.left = startX + 'vw';
+                star.style.top = startY + 'vh';
+
+                // Calculate path to center (falling inward)
+                star.style.setProperty('--target-x', (50 - startX) + 'vw');
+                star.style.setProperty('--target-y', (50 - startY) + 'vh');
+
+                // Star size - visible but realistic
+                const size = 1 + Math.random() * 1.5;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+
+                // Color variation (realistic star colors)
+                const colors = ['#ffffff', '#f8f8ff', '#e6f2ff', '#dae8f5', '#c8d8e8'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                star.style.background = color;
+                star.style.boxShadow = `0 0 ${size * 2}px ${color}`;
+
+                // Speed variation (creates depth - closer stars move faster)
+                const speed = 2 + Math.random() * 2;
+                star.style.animationDuration = speed + 's';
+
+                // Stagger start times
+                star.style.animationDelay = (Math.random() * 1) + 's';
+
+                particleContainer.appendChild(star);
+            }
+
+            // Trigger website reveal as you "arrive" at galaxy center
+            setTimeout(() => {
+                // Add gentle glow effect at arrival
+                introOverlay.classList.add('galaxy-arrival');
+
+                setTimeout(() => {
+                    introOverlay.style.opacity = '0';
+                    mainContent.classList.add('main-content-visible');
+                    body.classList.remove('intro-active');
+
+                    setTimeout(() => {
+                        introOverlay.style.display = 'none';
+                        particleContainer.innerHTML = '';
+                    }, 1500);
+                }, 300);
+            }, 2200); // Arrival moment
+        };
+    }
+    // --- END INTRO VIDEO LOGIC ---
+
     // Existing sponsor card hover effect
     document.querySelectorAll('.sponsor-card').forEach(card => {
         card.addEventListener('mouseenter', () => {
@@ -49,52 +134,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-
-//NAVBAR
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('#nav-menu');
-
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active'); // This triggers the X animation
-    navMenu.classList.toggle('active');    // This slides the menu in
-});
-
-// Close menu when a link is clicked
-document.querySelectorAll('nav ul li a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-    });
-});
-let lastScrollY = window.scrollY;
-let ticking = false;
-const header = document.querySelector("header");
-
-function updateNavbar() {
-    const currentScrollY = window.scrollY;
-
-    if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        // Fast hide on scroll down
-        header.classList.add("nav-hidden");
-    } else {
-        // Fast show on scroll up
-        header.classList.remove("nav-hidden");
+// --- MOBILE NAV TOGGLE ---
+function toggleMenu() {
+    const mobileNav = document.getElementById('mobileNav');
+    if (mobileNav) {
+        mobileNav.classList.toggle('active');
     }
-
-    lastScrollY = currentScrollY;
-    ticking = false;
 }
-
-window.addEventListener("scroll", () => {
-    const header = document.querySelector("header");
-    if (window.scrollY > 50) {
-        header.classList.add("nav-hidden");
-    } else {
-        header.classList.remove("nav-hidden");
-    }
-});
-    if (!ticking) {
-        window.requestAnimationFrame(updateNavbar);
-        ticking = true;
-    }
-
-    
+// --- END MOBILE NAV TOGGLE ---

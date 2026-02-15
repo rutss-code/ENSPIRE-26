@@ -1,0 +1,17 @@
+// --- MOBILE NAV TOGGLE ---
+function toggleMenu() {
+    const mobileNav = document.getElementById('mobileNav');
+    if (mobileNav) {
+        mobileNav.classList.toggle('active');
+    }
+}
+// --- END MOBILE NAV TOGGLE ---
+document.querySelectorAll('.sponsor-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.boxShadow = '0 0 20px rgba(255,255,255,0.2)';
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.boxShadow = 'none';
+    });
+});
