@@ -168,10 +168,53 @@ nav ul li:hover {
         transition: 0.5s ease;
     }
 
-    nav#nav-menu.active { left: 0; }
+    @media (max-width: 768px) {
+    /* Ensure the nav container is visible and scrollable if the list is long */
+    nav#nav-menu.active {
+        left: 0;
+        display: flex !important;
+        overflow-y: auto;
+    }
+
+    /* Force the list items to be visible */
+    nav ul li {
+        display: block !important;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* THE FIX FOR THE PASSES BUTTON */
+    nav ul li.pass-btn {
+        display: flex !important;
+        justify-content: center;
+        margin-top: 20px; /* Space it out from the links */
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .pass-btn img {
+        height: 50px !important; /* Smaller for mobile */
+        transform: translateY(0) !important; /* Remove the 5px desktop shift */
+        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+    }
+}
 
     nav ul { flex-direction: column; gap: 30px; }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+
 }
+
 * {
   margin: 0;
   padding: 0;
