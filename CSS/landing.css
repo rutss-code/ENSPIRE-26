@@ -2426,7 +2426,27 @@ body {
   display: none;
 }
 
+/* Desktop Center Image */
+.desktop-center-image {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 70%;
+  max-height: 60%;
+  width: auto;
+  height: auto;
+  z-index: 1;
+  /* Above video (0), below content (2) */
+  pointer-events: none;
+}
+
 @media (max-width: 768px) {
+  .desktop-center-image {
+    display: none;
+  }
+
   .mobile-center-image {
     display: block;
     position: absolute;

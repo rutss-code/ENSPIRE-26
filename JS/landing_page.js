@@ -6,7 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const particleContainer = document.getElementById('dust-particles');
 
     // --- 1. INTRO VIDEO LOGIC ---
-    if (introVideo && introOverlay) {
+    // Check if intro has already been played in this session
+    const hasPlayedIntro = sessionStorage.getItem('introPlayed');
+
+    if (introVideo && introOverlay && !hasPlayedIntro) {
         // Lock scrolling during intro
         body.classList.add('intro-active');
 
@@ -28,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     star.className = 'galaxy-star';
 
                     const angle = Math.random() * Math.PI * 2;
-                    const distance = 80 + Math.random() * 60; 
+                    const distance = 80 + Math.random() * 60;
 
                     const startX = 50 + Math.cos(angle) * distance;
                     const startY = 50 + Math.sin(angle) * distance;
@@ -64,17 +67,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     mainContent.classList.add('main-content-visible');
                     mainContent.style.opacity = '1';
                     mainContent.style.pointerEvents = 'all';
-                    
+
                     // CRITICAL FIX: Unlock the scrolling!
                     body.classList.remove('intro-active');
                     body.style.overflow = 'auto'; // Failsafe
+
+                    // Mark intro as played in this session
+                    sessionStorage.setItem('introPlayed', 'true');
 
                     setTimeout(() => {
                         introOverlay.style.display = 'none';
                         if (particleContainer) particleContainer.innerHTML = '';
                     }, 1500);
                 }, 300);
-            }, 2200); 
+            }, 2200);
         };
 
         // Trigger transition when video naturally ends
@@ -88,9 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 8000); // Wait max 8 seconds
 
     } else {
-        // Fallback if elements are missing: unlock immediately
+        // Intro already played or elements missing: show content immediately
         body.classList.remove('intro-active');
         body.style.overflow = 'auto';
+        if (introOverlay) {
+            introOverlay.style.display = 'none';
+        }
         if (mainContent) {
             mainContent.style.opacity = '1';
             mainContent.style.pointerEvents = 'all';
@@ -100,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. MOBILE NAV TOGGLE ---
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
-    
+
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
