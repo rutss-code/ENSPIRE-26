@@ -106,16 +106,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 2. MOBILE NAV TOGGLE ---
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
+// This block in your events.js will still work perfectly with the new HTML
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
 
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-    }
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+}
 
     // --- 3. SPONSOR CARDS HOVER EFFECT ---
     document.querySelectorAll('.sponsor-card').forEach(card => {

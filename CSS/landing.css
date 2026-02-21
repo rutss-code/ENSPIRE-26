@@ -103,43 +103,25 @@ header {
 @media (max-width: 768px) {
 
   /* 1. Header adjustment */
-  header {
-    width: 92% !important;
-    padding: 0 20px !important;
-    height: 70px !important;
-    top: 40px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    border-radius: 50px !important;
-    justify-content: space-between !important;
-    background: rgba(0, 0, 0, 0.4) !important;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    /* Remove the solid green border for home page floating style */
-  }
+  
+ nav#nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.98);
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+        z-index: 9999; /* Just below the header */
+    }
 
-  /* 2. Mobile Menu (The Slide-out) */
-  nav#nav-menu {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    /* Hidden by default */
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.98);
-    backdrop-filter: blur(20px);
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-    z-index: 1050;
-  }
-
-  nav#nav-menu.active {
-    left: 0;
-    /* Slide in */
-  }
+    nav#nav-menu.active {
+        left: 0;
+    }
 
   /* 3. Smaller Font & Spacing */
   nav ul {
@@ -156,53 +138,70 @@ header {
     list-style: none;
   }
 
-  /* 4. The Hamburger & Cross Animation */
-  .hamburger {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 4px;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1101;
-    height: auto;
-    width: auto;
-    background: transparent;
-    transition: all 0.3s ease;
-  }
+ @media (max-width: 768px) {
 
-  .menu-text {
-    display: none !important;
-  }
+   .hamburger {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        background: transparent !important;
+    }
 
-  .hamburger-bars {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 22px;
-    height: 12px;
-  }
+    .menu-pill {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 16px;
+        border: 1.5px solid rgba(255, 255, 255, 0.7); /* White border */
+        border-radius: 30px; /* Rounded pill shape */
+        background: rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+    }
 
-  .bar {
-    width: 22px;
-    height: 2px;
-    background: #fff;
-    transition: 0.3s;
-  }
+    .menu-text {
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
 
-  .hamburger.active .bar:nth-child(1) {
-    transform: translateY(5px) rotate(45deg);
-  }
+    .hamburger-bars {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 20px; /* Slightly wider bars */
+        height: 12px;
+    }
 
-  .hamburger.active .bar:nth-child(2) {
-    opacity: 0;
-  }
+    .bar {
+        width: 100%;
+        height: 2px;
+        background-color: #ffffff !important;
+        border-radius: 10px;
+    }
 
-  .hamburger.active .bar:nth-child(3) {
-    transform: translateY(-5px) rotate(-45deg);
-  }
 
+    /* Cross animation inside the pill */
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(5px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-5px) rotate(-45deg);
+    }
+    
+    /* Hover effect for the pill */
+    .menu-pill:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: #ffffff;
+    }
+}
   /* 5. Timeline Row Fix */
   .timeline {
     flex-direction: row !important;
@@ -374,9 +373,9 @@ nav ul li:hover {
 
 /* Slim logo for the slim bar */
 .logo img {
-  height: 30px;
-  width: auto;
-}
+        height: 35px !important;
+        width: auto !important;
+    }
 
 /* Ensure the Pass icon is tiny and balanced */
 .pass-btn img {
