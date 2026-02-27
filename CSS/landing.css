@@ -172,34 +172,40 @@ header {
     align-items: center !important;
     flex-shrink: 0 !important;
   }
-
-/* --- 2. Force the Menu to be Full-Screen and Transparent --- */
-  nav#nav-menu {
+nav#nav-menu {
     position: fixed !important;
-    /* This 'inset' command kills the top/left gaps */
-    inset: 0px !important; 
-    width: 100vw !important;
-    height: 100vh !important;
-    margin: 0 !important;
-    padding: 0 !important;
-
-    /* 🔥 FORCE TRANSPARENCY: rgba(253, 250, 231, 0.7) */
-    background-color: rgba(3, 3, 3, 0.7) !important; 
+    /* Position it slightly away from the edges for the floating effect */
+    top: 15px !important; 
+    right: 15px !important; 
+    left: auto !important; 
     
-    /* This creates the 'Glass' effect over the stars */
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
+    /* 🔥 SMALLER SIZE */
+    width: 280px !important;      /* Fixed width */
+    height: auto !important;       /* Height adjusts to content */
+    max-height: 80vh !important;   /* Limits height to 80% of screen */
+    
+    /* 🔥 CURVED EDGES ON ALL SIDES */
+    border-radius: 30px !important; 
+    
+    /* Glassmorphism Styling */
+    background-color: rgba(0, 0, 0, 0) !important; 
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1.5px solid rgba(0, 0, 0, 0.08) !important;
 
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
+    padding: 80px 20px 40px !important; /* Extra top padding for the header overlap */
 
-    /* Transition Settings */
-    transform: translateX(100%) !important;
+    /* Animation: Slides in from the side */
+    transform: translateX(120%) !important;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    
     z-index: 10000 !important;
     visibility: hidden !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3) !important;
   }
 
   nav#nav-menu.active {
@@ -207,12 +213,30 @@ header {
     visibility: visible !important;
     pointer-events: all !important;
   }
-  /* Typography Sizing */
+
+  /* Tighten link spacing for the smaller menu */
+  nav#nav-menu ul {
+    gap: 15px !important;
+  }
+
   nav#nav-menu ul li a {
-    font-size: 1.8rem !important;
-    font-weight: 800 !important;
-    color: #ffffff !important; /* Keep text dark for contrast on cream */
-    text-transform: uppercase !important;
+    font-size: 1.3rem !important;
+    padding: 8px 0 !important;
+  }
+
+  /* --- Passes Ticket Fix --- */
+  .pass-btn {
+    margin-top: 5px !important; 
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .pass-btn img {
+    height: 50px !important; /* Smaller to ensure it never overflows */
+    width: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
   }
 }
 
