@@ -113,26 +113,27 @@ const menuText = document.querySelector('.menu-text');
 const menuPill = document.querySelector('.menu-pill');
 const bars = document.querySelectorAll('.bar');
 
+// --- Updated Nav Toggle Logic ---
 if (hamburger && navMenu) {
     hamburger.addEventListener('click', () => {
         const isActive = navMenu.classList.toggle('active');
         hamburger.classList.toggle('active');
         
         if (isActive) {
-            // Dark Mode for UI (to see against the cream background)
-            menuPill.style.borderColor = "#000000";
+            // Force text to WHITE so it's visible on the dark menu card
             if (menuText) {
                 menuText.textContent = 'Close';
-                menuText.style.color = "#000000";
+                menuText.style.color = "#ffffff"; 
+                menuText.style.opacity = "1";
             }
-            bars.forEach(b => b.style.backgroundColor = "#000000");
-            document.body.style.overflow = "hidden"; // Prevent background scroll
+            // Ensure the hamburger bars also stay white
+            bars.forEach(b => b.style.backgroundColor = "#ffffff");
+            document.body.style.overflow = "hidden"; 
         } else {
-            // Default White UI (to see against the galaxy background)
-            menuPill.style.borderColor = "#ffffff";
             if (menuText) {
                 menuText.textContent = 'Menu';
                 menuText.style.color = "#ffffff";
+                menuText.style.opacity = "1";
             }
             bars.forEach(b => b.style.backgroundColor = "#ffffff");
             document.body.style.overflow = "auto";
