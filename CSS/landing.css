@@ -740,15 +740,19 @@ CONTENT .content {
 
 /* BUTTON */
 .btn {
-  padding: 0.875rem 2.1875rem;
+   padding: 0.875rem 2.1875rem;
+  width: 18rem;
   border-radius: 1.875rem;
   background: transparent;
-  border: 0.125rem solid #b44cff;
+  border: 0.9rem solid #b44cff;
   color: #fff;
   font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
   transition: 0.3s ease;
   margin-top: 25rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .btn:hover {
@@ -2757,8 +2761,8 @@ main {
 /* Alumni Grid */
 .alumni-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
   margin-top: 2rem;
 }
 
@@ -2830,8 +2834,8 @@ main {
   }
 
   .alumni-grid {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
   }
 
   .alumni-overlay h3 {
@@ -2845,8 +2849,8 @@ main {
 
 @media (max-width: 480px) {
   .alumni-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.8rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
   .alumni-overlay {
@@ -2854,7 +2858,7 @@ main {
   }
 
   .alumni-overlay h3 {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .alumni-overlay p {
