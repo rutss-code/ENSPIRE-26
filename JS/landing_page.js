@@ -5,20 +5,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const particleContainer = document.getElementById('dust-particles');
 
-    // --- 1. INTRO VIDEO & GALAXY TRANSITION ---
+    // --- 1. INTRO VIDEO LOGIC ---
+    // Check if intro has already been played in this session
     const hasPlayedIntro = sessionStorage.getItem('introPlayed');
 
     if (introVideo && introOverlay && !hasPlayedIntro) {
+        // Lock scrolling during intro
         body.classList.add('intro-active');
 
+        // Attempt to play
         introVideo.play().catch(() => {
             introVideo.muted = true;
             introVideo.play();
         });
 
+        // The master function to run when the video ends
         const startGalaxyTransition = () => {
             introVideo.classList.add('dust-effect');
 
+            // --- FALLING INTO GALAXY EFFECT ---
             if (particleContainer) {
                 const totalStars = 800;
                 for (let i = 0; i < totalStars; i++) {
@@ -27,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const angle = Math.random() * Math.PI * 2;
                     const distance = 80 + Math.random() * 60;
+
                     const startX = 50 + Math.cos(angle) * distance;
                     const startY = 50 + Math.sin(angle) * distance;
 
@@ -44,13 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     star.style.background = color;
                     star.style.boxShadow = `0 0 ${size * 2}px ${color}`;
 
-                    star.style.animationDuration = (2 + Math.random() * 2) + 's';
+                    const speed = 2 + Math.random() * 2;
+                    star.style.animationDuration = speed + 's';
                     star.style.animationDelay = (Math.random() * 1) + 's';
 
                     particleContainer.appendChild(star);
                 }
             }
 
+            // Trigger website reveal
             setTimeout(() => {
                 introOverlay.classList.add('galaxy-arrival');
 
@@ -60,9 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     mainContent.style.opacity = '1';
                     mainContent.style.pointerEvents = 'all';
 
+                    // CRITICAL FIX: Unlock the scrolling!
                     body.classList.remove('intro-active');
-                    body.style.overflow = 'auto';
+                    body.style.overflow = 'auto'; // Failsafe
 
+                    // Mark intro as played in this session
                     sessionStorage.setItem('introPlayed', 'true');
 
                     setTimeout(() => {
@@ -73,85 +83,78 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 2200);
         };
 
+        // Trigger transition when video naturally ends
         introVideo.onended = startGalaxyTransition;
 
+        // Safety timeout (in case the video gets stuck or blocked by browser policies)
         setTimeout(() => {
             if (body.classList.contains('intro-active')) {
                 startGalaxyTransition();
             }
-        }, 8000);
+        }, 8000); // Wait max 8 seconds
 
     } else {
-        // Fallback if intro already played
+        // Intro already played or elements missing: show content immediately
         body.classList.remove('intro-active');
         body.style.overflow = 'auto';
-        if (introOverlay) introOverlay.style.display = 'none';
+        if (introOverlay) {
+            introOverlay.style.display = 'none';
+        }
         if (mainContent) {
             mainContent.style.opacity = '1';
             mainContent.style.pointerEvents = 'all';
         }
     }
 
-    // --- 2. MOBILE NAVIGATION LOGIC ---
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    const menuText = document.querySelector('.menu-text');
-    const menuPill = document.querySelector('.menu-pill');
-    const bars = document.querySelectorAll('.bar');
-    const logoImg = document.querySelector('.logo img');
+// --- Updated Nav Toggle Logic ---
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+const menuText = document.querySelector('.menu-text');
+const menuPill = document.querySelector('.menu-pill');
+const bars = document.querySelectorAll('.bar');
 
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
-            const isActive = navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            
-            const header = document.querySelector('header');
-            if (header) header.classList.toggle('menu-open');
-
-            if (isActive) {
-                // UI Elements stay WHITE for high contrast against stars
-                if (menuPill) {
-                    menuPill.style.backgroundColor = "rgba(255, 255, 255, 0.25)";
-                    menuPill.style.borderColor = "#ffffff";
-                }
-                if (menuText) {
-                    menuText.textContent = 'Close';
-                    menuText.style.color = "#ffffff"; 
-                }
-                bars.forEach(b => b.style.backgroundColor = "#ffffff");
-                
-                // Keep logo white/original
-                if (logoImg) logoImg.style.filter = "none"; 
-                
-                body.style.overflow = "hidden"; 
-            } else {
-                // Revert to original pill state
-                if (menuPill) {
-                    menuPill.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-                    menuPill.style.borderColor = "rgba(255, 255, 255, 0.3)";
-                }
-                if (menuText) {
-                    menuText.textContent = 'Menu';
-                    menuText.style.color = "#ffffff";
-                }
-                bars.forEach(b => b.style.backgroundColor = "#ffffff");
-                body.style.overflow = "auto";
+// --- Updated Nav Toggle Logic ---
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        const isActive = navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+        
+        if (isActive) {
+            // Force text to WHITE so it's visible on the dark menu card
+            if (menuText) {
+                menuText.textContent = 'Close';
+                menuText.style.color = "#ffffff"; 
+                menuText.style.opacity = "1";
             }
-        });
-    }
+            // Ensure the hamburger bars also stay white
+            bars.forEach(b => b.style.backgroundColor = "#ffffff");
+            document.body.style.overflow = "hidden"; 
+        } else {
+            if (menuText) {
+                menuText.textContent = 'Menu';
+                menuText.style.color = "#ffffff";
+                menuText.style.opacity = "1";
+            }
+            bars.forEach(b => b.style.backgroundColor = "#ffffff");
+            document.body.style.overflow = "auto";
+        }
+    });
+}
 
     // --- 3. SPONSOR CARDS HOVER EFFECT ---
     document.querySelectorAll('.sponsor-card').forEach(card => {
         card.addEventListener('mouseenter', () => {
             card.style.boxShadow = '0 0 20px rgba(255,255,255,0.2)';
         });
+
         card.addEventListener('mouseleave', () => {
             card.style.boxShadow = 'none';
         });
     });
 
-    // --- 4. 3D SPEAKER CAROUSEL ---
+    // --- 4. 3D CAROUSEL LOGIC ---
     const carouselContainer = document.getElementById('carousel-container');
+
     if (carouselContainer) {
         const cards = Array.from(carouselContainer.querySelectorAll('.speaker-card'));
         const totalCards = cards.length;
@@ -160,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let currentIndex = 0;
             let autoPlayTimer = null;
 
-            const updateCarousel = () => {
+            function updateCarousel() {
                 cards.forEach((card) => {
                     card.classList.remove('c-active', 'c-prev', 'c-next');
                 });
@@ -171,19 +174,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 cards[currentIndex].classList.add('c-active');
                 if (totalCards > 1) cards[prevIndex].classList.add('c-prev');
                 if (totalCards > 2) cards[nextIndex].classList.add('c-next');
-            };
+            }
 
-            const startAutoPlay = () => {
-                if (autoPlayTimer) clearInterval(autoPlayTimer);
-                autoPlayTimer = setInterval(() => {
-                    currentIndex = (currentIndex + 1) % totalCards;
-                    updateCarousel();
-                }, 3500);
-            };
+            function goTo(index) {
+                currentIndex = ((index % totalCards) + totalCards) % totalCards;
+                updateCarousel();
+            }
 
-            carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
+            function goNext() { goTo(currentIndex + 1); }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoPlayTimer = setInterval(goNext, 3500);
+            }
+
+            function stopAutoPlay() {
+                if (autoPlayTimer) {
+                    clearInterval(autoPlayTimer);
+                    autoPlayTimer = null;
+                }
+            }
+
+            // Pause on hover
+            carouselContainer.addEventListener('mouseenter', stopAutoPlay);
             carouselContainer.addEventListener('mouseleave', startAutoPlay);
 
+            // Init
             updateCarousel();
             startAutoPlay();
         }
