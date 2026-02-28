@@ -877,19 +877,24 @@ body {
         margin-top: 20px;
     }
 
-    nav ul li.pass-btn {
-        width: 100%;
+    nav ul {
+        list-style: none;
         display: flex;
-        justify-content: center;
-        margin-top: 20px;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 90%;
+        margin: 0;
+        padding: 0;
     }
+
+    
 
     /* Force the Passes image to appear on all screens */
     .pass-btn img {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
-        height: 60px !important;
+        height: 600px !important;
         /* Forces a height */
         width: auto !important;
         /* Keeps it from being 0px wide */
