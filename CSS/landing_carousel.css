@@ -2506,8 +2506,8 @@ body {
 /* Alumni Grid */
 .alumni-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
   margin-top: 2rem;
 }
 
@@ -2579,8 +2579,8 @@ body {
   }
 
   .alumni-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
   }
 
   .alumni-overlay h3 {
@@ -2594,8 +2594,8 @@ body {
 
 @media (max-width: 480px) {
   .alumni-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
   }
 
   .alumni-overlay {
@@ -2603,7 +2603,7 @@ body {
   }
 
   .alumni-overlay h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .alumni-overlay p {
